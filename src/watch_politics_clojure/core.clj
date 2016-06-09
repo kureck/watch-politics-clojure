@@ -15,10 +15,18 @@
              (make-call url))))
 
 (defn http-call [url]
-  (println (client/get url)))
+  (client/get url))
+
+(defn parse [s]
+  (xml/parse
+   (java.io.ByteArrayInputStream. (.getBytes s))))
+
+(defn xml-reader [input]
+  (parse (:body input)))
 
 (defn -main []  
-  (get-it "http://ip.jsontest.com/")
-  (http-call "http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ListarProposicoesVotadasEmPlenario?ano=2013&tipo="))
+  ;(get-it "http://ip.jsontest.com/")
+  (xml-reader 
+    (http-call "http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ListarProposicoesVotadasEmPlenario?ano=2013&tipo=")))
 
 (-main)
