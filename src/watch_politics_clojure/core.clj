@@ -1,7 +1,8 @@
 (ns watch-politics-clojure.core
   (:require [clj-http.client :as client]
             [clojure.data.json :as json]
-            [clojure.data.xml :as xml]))
+            [clojure.data.xml :as xml]
+            [clojure.zip :as zip]))
 
 (defn extract-json [response-body]
   (json/read-str response-body))
@@ -20,6 +21,10 @@
 (defn parse [s]
   (xml/parse
    (java.io.ByteArrayInputStream. (.getBytes s))))
+
+(defn xml-zip [xml]
+  (zip/xml-zip
+    (parse xml)))
 
 (defn xml-reader [input]
   (parse (:body input)))
