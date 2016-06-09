@@ -1,10 +1,22 @@
-# watch-politics-clojure
+# Watching politics (Clojure version)
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure version from a ...
+
+## List of desired services to use
+
+* campaign finance
+* laws propositions
+* current and past legislators
+* current and past executive member
+
+### APIs or data gov pages to be used
+
+* http://dev.transparencia.org.br/api-portal/swagger/eleies-2014
+* http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx
+* http://www2.camara.leg.br/transparencia/dados-abertos/dados-abertos-legislativo
+
 
 ## Usage
-
-FIXME
 
 ## License
 
