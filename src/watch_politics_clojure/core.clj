@@ -1,23 +1,24 @@
 (ns watch-politics-clojure.core
   (:require [clj-http.client :as client]
-            [clojure.data.json :as json]))
+            [clojure.data.json :as json]
+            [clojure.data.xml :as xml]))
 
 (defn extract-json [response-body]
-  (get (json/read-str response-body) "value 1"))
+  (json/read-str response-body))
 
-(defn make-call [url input]
+(defn make-call [url]
   (:body
-    (client/get url
-                {:query-params {"value1" input}})))
+    (client/get url)))
 
-(defn get-it [url input]
+(defn get-it [url]
   (println (extract-json
-             (make-call url input))))
+             (make-call url))))
 
 (defn http-call [url]
   (println (client/get url)))
 
-(defn -main []  (get-it "http://ip.jsontest.com/"
-                        "I am become"))
+(defn -main []  
+  (get-it "http://ip.jsontest.com/")
+  (http-call "http://www.camara.gov.br/SitCamaraWS/Proposicoes.asmx/ListarProposicoesVotadasEmPlenario?ano=2013&tipo="))
 
 (-main)
